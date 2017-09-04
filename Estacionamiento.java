@@ -31,7 +31,7 @@ public class Estacionamiento
             System.out.println("vehículo no se encuentra registrado y no podrá calcular el costo del estacionamiento.");
         }
     }
-    public int buscaPlacas(String placas)
+    private int buscaPlacas(String placas)
     {
         for(int i  = 0;i<Capacidad.length;i++)
         {
@@ -50,10 +50,12 @@ public class Estacionamiento
         horasTotales = Hora - Capacidad[Acc].dimeHora();
         minutosTotales = Hora - Capacidad[Acc].dimeMinuto();
         tarifa = horasTotales * 15;
-        if(minutosTotales == 0)
+        //Esta indeciso con la validacion
+        /*if(minutosTotales != 0)
         {
             tarifa+=15;
-        }
+        }*/
+        tarifa+=15;
         return tarifa;
     }
 }
