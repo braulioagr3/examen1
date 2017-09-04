@@ -13,7 +13,7 @@ public class vehiculo
     {
         return placas;
     }
-    public int dimehora()
+    public int dimeHora()
     {
         return Hora;
     }

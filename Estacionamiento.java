@@ -18,12 +18,12 @@ public class Estacionamiento
     }
     public void sacaVehiculo(String placas, int Hora, int Minuto)
     {
-        boolean Acc;
+        int Acc;
         Acc = buscaPlacas(placas);
         int Tarifa;
-        if(Acc == true)
+        if(Acc != -1)
         {
-            Tarifa = calaculaTarifa(Hora,Minuto);
+            Tarifa = calaculaTarifa(Capacidad[Acc],Hora,Minuto,Acc);
             System.out.println(Tarifa);
         }
         else
@@ -31,21 +31,29 @@ public class Estacionamiento
             System.out.println("vehículo no se encuentra registrado y no podrá calcular el costo del estacionamiento.");
         }
     }
-    public boolean buscaPlacas(String placas)
+    public int buscaPlacas(String placas)
     {
         for(int i  = 0;i<Capacidad.length;i++)
         {
             if(placas == Capacidad[i].damePlacas())
             {
-                return true;
+                return i;
             }
         }
-        return false;
+        return -1;
     }
-    public int calaculaTarifa(int Hora, int Minuto)
+    public int calaculaTarifa(vehiculo auto, int Hora, int Minuto, int Acc)
     {
-        int tarifa;
-        
+        int tarifa = 0;
+        int horasTotales;
+        int minutosTotales;
+        horasTotales = Hora - Capacidad[Acc].dimeHora();
+        minutosTotales = Hora - Capacidad[Acc].dimeMinuto();
+        tarifa = horasTotales * 15;
+        if(minutosTotales == 0)
+        {
+            tarifa+=15;
+        }
         return tarifa;
     }
 }
